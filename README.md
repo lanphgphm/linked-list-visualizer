@@ -2,7 +2,7 @@
 Visualizing linked list `add` and `delete` operation using Java Swing UI library. 
 
 ## Developer setup
-Requirements: Java 21, VSCode (or any IDE of choice)
+**Requirements**: Java 21, VSCode (or any IDE of choice)
 
 1.  Ask @lanphgphm to be added as project collaborator.
 
@@ -14,11 +14,10 @@ Requirements: Java 21, VSCode (or any IDE of choice)
 
 3.  Start adding code! 
     All code files should begin with these imports: 
-    `package com.cs2project.linkedlistvisualizer.panels;`
 
-    `import javax.swing.*;`
-
-    `import java.awt.*;`
+    `package com.cs2project.linkedlistvisualizer.panels;
+    import javax.swing.*;
+    import java.awt.*;`
 
     Currently, the project is organized like this: 
     ![Alt text](/project-documents/project-structure.png) 
