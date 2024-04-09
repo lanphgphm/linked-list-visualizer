@@ -18,7 +18,7 @@ public class ControlPanel extends JPanel {
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
         
         // array input 
-        this.arrayInput = new LabelledTextInput("Array", "1, 4, 3, 2", 100, 20);
+        this.arrayInput = new LabelledTextInput("List", "1, 4, 3, 2", 100, 20);
         innerPanel.add(this.arrayInput);
         
         // value input
