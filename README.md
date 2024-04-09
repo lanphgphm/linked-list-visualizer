@@ -15,7 +15,9 @@ Requirements: Java 21, VSCode (or any IDE of choice)
 3.  Start adding code! 
     All code files should begin with these imports: 
     `package com.cs2project.linkedlistvisualizer.panels;`
+
     `import javax.swing.*;`
+
     `import java.awt.*;`
 
     Currently, the project is organized like this: 
@@ -29,10 +31,14 @@ Requirements: Java 21, VSCode (or any IDE of choice)
     `git pull` 
 
     Then, stage, commit, and push your code: 
+
     `git add .`
+
     `git commit -m "<commit message>"`
+
     `git push -u origin <branch name>` (first time), or `git push` (not first time)
 
 ## User installation 
-Currently, this product is not done therefore it is not shippable to users :) 
+Currently, this product is not done therefore it is not shippable to users :)
+ 
 Installation guide would be updated in due time. 
