@@ -11,7 +11,7 @@ Visualizing linked list `add` and `delete` operation using Java Swing UI library
     `git clone https://github.com/lanphgphm/linked-list-visualizer.git`
 
     Create your own branch and switch to it with: 
-    
+
     `git checkout -b <branch name>`
 
 3.  Start adding code! 
@@ -30,6 +30,7 @@ Visualizing linked list `add` and `delete` operation using Java Swing UI library
 
 4.  Push your code to this repository
     Before pushing, always pull any changes from upstream with: 
+    
     `git pull` 
 
     Then, stage, commit, and push your code: 
