@@ -1,8 +1,9 @@
-package com.cs2project.linkedlistvisualizer.panels;
-import com.cs2project.linkedlistvisualizer.components.LabelledTextInput;
+package com.linkedlistvisualizer.components.layout;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.EmptyBorder;
+
+import com.linkedlistvisualizer.components.LabelledTextInput;
 
 public class ControlPanel extends JPanel {
     private LabelledTextInput arrayInput; 

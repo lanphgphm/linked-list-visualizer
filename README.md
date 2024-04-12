@@ -15,6 +15,7 @@ Visualizing linked list `add` and `delete` operation using Java Swing UI library
     `git checkout -b <branch name>`
 
 3.  Start adding code! 
+    
     All code files should begin with these imports: 
 
     ```java
@@ -28,7 +29,18 @@ Visualizing linked list `add` and `delete` operation using Java Swing UI library
     And the class hierarchy looks like this: 
     ![Alt text](/project-documents/class-hierarchy.png)
 
-4.  Push your code to this repository
+4.  Run the app 
+
+    Open the project in your IDE. If you are using VSCode, right click on project folder and choose "Open with VSCode." This ensures that you enter the right environment. 
+
+    Inside VSCode, start the app by clicking the "Run" button, or open terminal and type
+
+    `mvn exec:java`
+
+    the app should render like a regular desktop app. 
+
+5.  Push your code to this repository
+    
     Before pushing, always pull any changes from upstream with: 
     
     `git pull` 

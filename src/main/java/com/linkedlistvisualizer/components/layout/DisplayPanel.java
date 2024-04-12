@@ -1,4 +1,4 @@
-package com.cs2project.linkedlistvisualizer.panels;
+package com.linkedlistvisualizer.components.layout;
 import javax.swing.*;
 import java.awt.*;
 

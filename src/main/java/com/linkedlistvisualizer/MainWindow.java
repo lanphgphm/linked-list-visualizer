@@ -1,15 +1,16 @@
-package com.cs2project.linkedlistvisualizer;
-import com.cs2project.linkedlistvisualizer.panels.ControlPanel;
-import com.cs2project.linkedlistvisualizer.panels.DisplayPanel;
-import com.cs2project.linkedlistvisualizer.panels.PanelFactory;
+package com.linkedlistvisualizer;
 import javax.swing.*;
 import java.awt.*;
+
+import com.linkedlistvisualizer.components.layout.ControlPanel;
+import com.linkedlistvisualizer.components.layout.DisplayPanel;
+import com.linkedlistvisualizer.components.layout.PanelFactory;
 
 public class MainWindow extends javax.swing.JFrame {
     private static void showApp(){
         JFrame frame = new JFrame("Linked List Visualizer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1080, 600);
+        Styles.styleMainWindow(frame);
         
         JPanel mainPanel = new JPanel(new BorderLayout());
         frame.add(mainPanel);
