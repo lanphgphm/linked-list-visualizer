@@ -7,9 +7,11 @@ Visualizing linked list `add` and `delete` operation using Java Swing UI library
 1.  Ask @lanphgphm to be added as project collaborator.
 
 2.  Clone this repository with: 
+
     `git clone https://github.com/lanphgphm/linked-list-visualizer.git`
 
     Create your own branch and switch to it with: 
+    
     `git checkout -b <branch name>`
 
 3.  Start adding code! 
