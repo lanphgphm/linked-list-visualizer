@@ -1,5 +1,8 @@
 package com.linkedlistvisualizer.components;
-import javax.swing.*; 
+import javax.swing.*;
+
+import com.linkedlistvisualizer.Styles;
+
 import java.awt.*; 
 
 
@@ -9,16 +12,14 @@ public class LabelledTextInput extends JPanel {
     
     public LabelledTextInput(String label, String placeholder, int w, int h){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); 
-        setPreferredSize(new Dimension(w+20, 2*h)); 
         
         // create and config label 
         this.label = new JLabel(label); 
-        this.label.setAlignmentX(Component.LEFT_ALIGNMENT);
+        Styles.styleLabel(this.label);
         
         // create and config text input field 
         this.textField = new JTextField(placeholder); 
-        this.textField.setPreferredSize(new Dimension(w, h));
-        this.textField.setAlignmentX(Component.LEFT_ALIGNMENT); 
+        Styles.styleTextField(this.textField, w, h);
         
         add(this.label); 
         add(this.textField);
