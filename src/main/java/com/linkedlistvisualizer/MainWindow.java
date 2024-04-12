@@ -7,6 +7,14 @@ import com.linkedlistvisualizer.components.layout.DisplayPanel;
 import com.linkedlistvisualizer.components.layout.PanelFactory;
 
 public class MainWindow extends javax.swing.JFrame {
+    public MainWindow(){
+        setUndecorated(true); // TODO: not working 
+
+        JPanel titleBar = new JPanel(); 
+        Styles.styleTitleBar(titleBar);
+        add(titleBar, BorderLayout.NORTH); 
+    }
+
     private static void showApp(){
         JFrame frame = new JFrame("Linked List Visualizer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,7 +35,7 @@ public class MainWindow extends javax.swing.JFrame {
     public static void main(String[] args){
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
         SwingUtilities.invokeLater(() -> showApp());
