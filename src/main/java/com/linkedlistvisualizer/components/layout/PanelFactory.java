@@ -1,6 +1,4 @@
-package com.cs2project.linkedlistvisualizer.panels;
-import javax.swing.*;
-import java.awt.*;
+package com.linkedlistvisualizer.components.layout;
 
 public class PanelFactory {
     public static ControlPanel createControlPanel(){
