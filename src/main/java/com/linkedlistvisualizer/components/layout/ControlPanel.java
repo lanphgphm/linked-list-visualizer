@@ -1,17 +1,15 @@
 package com.linkedlistvisualizer.components.layout;
 import javax.swing.*;
-import javax.swing.text.Style;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 import com.linkedlistvisualizer.DataCenter;
 import com.linkedlistvisualizer.Styles;
 import com.linkedlistvisualizer.components.LabelledTextInput;
 // import com.linkedlistvisualizer.components.eventHandler.setList;
-
+@SuppressWarnings("unused")
 public class ControlPanel extends JPanel {
     private LabelledTextInput arrayInput; 
     private LabelledTextInput valueInput; 

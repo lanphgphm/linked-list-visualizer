@@ -3,8 +3,7 @@ import javax.swing.*;
 
 import com.linkedlistvisualizer.Styles;
 
-import java.awt.*;
-
+@SuppressWarnings("unused")
 public class Car extends JPanel {
     private Integer data; 
     private Car next; 
@@ -28,5 +27,9 @@ public class Car extends JPanel {
     public void setNext(Car next){
         this.next = next;
         ((JLabel) this.getComponent(1)).setText("Next: " + (next != null ? next.data : "null"));
+    }
+
+    public Integer getData(){
+        return this.data;
     }
 }

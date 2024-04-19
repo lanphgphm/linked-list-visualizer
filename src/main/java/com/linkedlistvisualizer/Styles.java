@@ -1,18 +1,14 @@
 package com.linkedlistvisualizer;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -38,13 +34,7 @@ public class Styles {
         XPRED, XPYELLOW, XPGREEN, XPORANGE, XPBLUE, XPLIGHTBLUE
     );
 
-    static final Map<Color, Integer> colorCounts = new HashMap<>();
-
-    static {
-        for (Color color : colors) {
-            colorCounts.put(color, 0);
-        }
-    }
+    private static int nextColorIdx = 0; 
 
     public static void styleTitleBar(JPanel bar){
         bar.setBackground(XPBLUE); 
@@ -115,6 +105,7 @@ public class Styles {
 
         Color carColor = getRandomColor();
         car.setBackground(carColor);
+        System.out.println("Car with data: " + car.getData().toString() + " has color: " + carColor.toString());
 
         setCarDataLabel(dataLabel);
         setCarLinkLabel(linkLabel);
@@ -122,18 +113,12 @@ public class Styles {
     }
 
     public static Color getRandomColor(){
-        Color rarestColor = null; 
-        int minCount = Integer.MAX_VALUE;
-
-        for(Map.Entry<Color, Integer> entry: colorCounts.entrySet()){
-            if(entry.getValue() < minCount){
-                minCount = entry.getValue();
-                rarestColor = entry.getKey();
-            }
-        }
-        colorCounts.put(rarestColor, minCount+1);
-        return rarestColor; 
+        Color color = colors.get(nextColorIdx);
+        nextColorIdx = (nextColorIdx + 1) % colors.size();
+        return color;
     }
+
+    
 
     public static void styleButton(JButton button){
         button.setBackground(XPBLUE);
@@ -157,7 +142,6 @@ public class Styles {
         public void mouseReleased(MouseEvent e) {
             button.setBackground(XPBLUE); 
         }
-
     });
     }
 }
