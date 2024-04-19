@@ -4,40 +4,35 @@ import java.awt.*;
 
 import com.linkedlistvisualizer.components.layout.ControlPanel;
 import com.linkedlistvisualizer.components.layout.DisplayPanel;
-import com.linkedlistvisualizer.components.layout.PanelFactory;
+
 
 public class MainWindow extends javax.swing.JFrame {
-    public MainWindow(){
-        setUndecorated(true); // TODO: not working 
+    private static DataCenter dataCenter = new DataCenter("1, 4, 3, 2, 7, 5", "1", "0");
+    private static DisplayPanel displayPanel = new DisplayPanel(dataCenter);
+    private static ControlPanel controlPanel = new ControlPanel(dataCenter, displayPanel);
 
-        JPanel titleBar = new JPanel(); 
-        Styles.styleTitleBar(titleBar);
-        add(titleBar, BorderLayout.NORTH); 
+    public MainWindow(){
+        
     }
 
     private static void showApp(){
+        // MainWindow mainWindow = new MainWindow();
+
         JFrame frame = new JFrame("Linked List Visualizer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Styles.styleMainWindow(frame);
         
         JPanel mainPanel = new JPanel(new BorderLayout());
         frame.add(mainPanel);
-        
-        DisplayPanel displayPanel = PanelFactory.createDisplayPanel(); 
-        mainPanel.add(displayPanel, BorderLayout.WEST); 
-        
-        ControlPanel controlPanel = PanelFactory.createControlPanel(); 
+
         mainPanel.add(controlPanel, BorderLayout.EAST); 
+        mainPanel.add(displayPanel, BorderLayout.WEST); 
         
         frame.setVisible(true);
     }
     
     public static void main(String[] args){
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
+        
         SwingUtilities.invokeLater(() -> showApp());
     }
 }
