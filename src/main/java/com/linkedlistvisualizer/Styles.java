@@ -59,6 +59,7 @@ public class Styles {
 
     public static void styleControlPanel(JPanel panel, int w, int h) {
         panel.setBackground(XPBEIGE);
+        panel.setLayout(new GridLayout(0, 1, 0, 10));
         panel.setPreferredSize(new Dimension(w - borderSize, h));
         panel.setBorder(new CompoundBorder(
                 new EmptyBorder(0, 5, 0, 0),
@@ -69,6 +70,22 @@ public class Styles {
         panel.setBorder(new EmptyBorder(0, borderSize, 0, 0));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(XPBEIGE);
+    }
+
+    public static GridBagConstraints styleButtonPanel(JPanel panel) {
+        panel.setBorder(new EmptyBorder(0, borderSize, 0, 0));
+        panel.setBackground(XPBEIGE);
+        panel.setLayout(new GridBagLayout());
+        panel.setPreferredSize(new Dimension(200, 60));
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        // constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.weighty = 1;
+        // constraints.weightx = 1;
+        constraints.anchor = GridBagConstraints.NORTH;
+        constraints.insets = new Insets(5, 30, 5, 30);
+
+        return constraints;
     }
 
     public static GridBagConstraints styleDisplayPanel(JPanel panel) {
