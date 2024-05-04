@@ -130,10 +130,17 @@ public class DisplayPanel extends JPanel {
                         components.add(new RightToLeftLink());
                     }
                 } else {
-                    components.add(car);
-                    carCounter++;
-                    // carCounter++;
-                    leftToRight = false;
+                    if (leftToRight) {
+                        components.add(car);
+                        carCounter++;
+                        // carCounter++;
+                        leftToRight = false;
+                    } else {
+                        components.add(car);
+                        carCounter++;
+                        // carCounter++;
+                        leftToRight = true;
+                    }
                 }
 
             } else {
