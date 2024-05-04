@@ -75,7 +75,7 @@ public class DisplayPanel extends JPanel {
 
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.weightx = 1;
+        // constraints.weightx = 1;
         constraints.anchor = GridBagConstraints.NORTHWEST;
 
         ArrayList<Component> components = getAllCarsAndLinks(cars);

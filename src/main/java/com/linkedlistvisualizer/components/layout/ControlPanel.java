@@ -85,6 +85,7 @@ public class ControlPanel extends JPanel {
 
         // index input
         this.indexInput = new LabelledTextInput("Index (Optional)", "-1", textW, textH);
+        this.indexInput = new LabelledTextInput("Index (Optional)", "-1", textW, textH);
         innerPanel.add(this.indexInput);
         // button to set indexinput
         JButton setIndexButton = new JButton("Set Index");
@@ -136,7 +137,7 @@ public class ControlPanel extends JPanel {
 
                         // Insert the value at the specified index
                         int index = Integer.parseInt(dataCenter.getIndex());
-                        System.out.println(dataCenter.getIntArray().size());
+                        // System.out.println(dataCenter.getIntArray().size());
 
                         // Check if the index is out of range
                         if (index > dataCenter.getIntArray().size()) {
