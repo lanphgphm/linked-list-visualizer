@@ -38,6 +38,9 @@ public class DisplayPanel extends JPanel {
         String[] stringArray = arrayInputString.split(","); // Split the string into an array of strings
         ArrayList<Integer> intArray = new ArrayList<Integer>(); // Create an array of integers with the same length
 
+        if (stringArray.length == 1 && stringArray[0].equals("")) {
+            return intArray;
+        }
         for (int i = 0; i < stringArray.length; i++) {
             intArray.add(Integer.parseInt(stringArray[i].trim())); // Convert each string to an integer and store it in
                                                                    // the array
@@ -47,7 +50,19 @@ public class DisplayPanel extends JPanel {
     }
 
     public static int parseStringToInt(String string) {
-        return Integer.parseInt(string.trim());
+        if (string == null || string.equals("")) {
+            return -1;
+        }
+
+        try {
+            return Integer.parseInt(string.trim());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: Invalid input! Please enter an integer. ParseInt",
+                    "ERROR: Invalid Input",
+                    JOptionPane.ERROR_MESSAGE);
+
+            return -1;
+        }
     }
 
     public void updateArray(String arrayStr, boolean animate) {

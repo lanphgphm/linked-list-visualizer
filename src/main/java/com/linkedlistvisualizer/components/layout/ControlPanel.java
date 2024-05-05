@@ -67,7 +67,8 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (valueInput.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Error: Invalid input! Please enter an integer.",
+                    JOptionPane.showMessageDialog(null,
+                            "Error: Invalid input! Please enter an integer. Set Value button",
                             "ERROR: Invalid Input",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -84,8 +85,9 @@ public class ControlPanel extends JPanel {
         innerPanel.add(setValueButton);
 
         // index input
-        this.indexInput = new LabelledTextInput("Index (Optional)", "-1", textW, textH);
-        this.indexInput = new LabelledTextInput("Index (Optional)", "-1", textW, textH);
+        // this.indexInput = new LabelledTextInput("Index (Optional)", "-1", textW,
+        // textH);
+        this.indexInput = new LabelledTextInput("Index (Optional)", "", textW, textH);
         innerPanel.add(this.indexInput);
         // button to set indexinput
         JButton setIndexButton = new JButton("Set Index");
@@ -115,29 +117,35 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                String valueInputString = valueInput.getText();
+                // System.out.println("Value set to: " + valueInputString);
+                // dataCenter.setIndex(indexInput.getText());
+                // int index = DisplayPanel.parseStringToInt(dataCenter.getIndex());
+                // System.out.println("Index set to: " + index);
+
                 // Check if the value input is empty
-                if (valueInput.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Error: Invalid input! Please enter an integer.",
+                if (valueInputString.equals("")) {
+                    JOptionPane.showMessageDialog(null,
+                            "Error: Invalid input! Please enter an integer as a value. Insert button",
                             "ERROR: Invalid Input",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
-                    String valueInputString = valueInput.getText();
 
+                    dataCenter.setValue(valueInputString);
                     // Check if the index input is empty or -1 (default), then insert at the end
                     if (dataCenter.getIndex().equals("") || dataCenter.getIndex().equals("-1")) {
 
-                        dataCenter.setValue(valueInputString);
                         String updatedArray = dataCenter.getArray() + ", " + valueInputString;
+
                         dataCenter.setArray(updatedArray);
                         dataCenter.setIntArray(updatedArray);
                         displayPanel.updateArray(dataCenter.getArray(), true);
+
                         System.out.println("Inserted " + valueInputString + " at the end");
 
                     } else { // Insert at the specified index
 
-                        // Insert the value at the specified index
                         int index = Integer.parseInt(dataCenter.getIndex());
-                        // System.out.println(dataCenter.getIntArray().size());
 
                         // Check if the index is out of range
                         if (index > dataCenter.getIntArray().size()) {
@@ -191,6 +199,120 @@ public class ControlPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Delete button clicked");
+
+                // If both value and index are not empty, show a warning message
+                if ((!valueInput.getText().equals("") && !indexInput.getText().equals(""))) {
+
+                    JOptionPane.showMessageDialog(null,
+                            "Error: Both value and index are not empty. Please enter only one of them.",
+                            "ERROR: Invalid Input", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // Check if the value & index input is empty, then delete the last element
+                if (valueInput.getText().equals("") && indexInput.getText().equals("")) {
+
+                    if (dataCenter.getIntArray().size() > 1) {
+
+                        int lastCommaIndex = dataCenter.getArray().lastIndexOf(",");
+                        String lastElement = dataCenter.getArray().substring(lastCommaIndex + 1,
+                                dataCenter.getArray().length());
+                        String updatedArray = dataCenter.getArray().substring(0, lastCommaIndex);
+
+                        dataCenter.setArray(updatedArray);
+                        dataCenter.setIntArray(updatedArray);
+                        displayPanel.updateArray(dataCenter.getArray(), true);
+
+                        System.out.println("Deleted " + lastElement + " at the end");
+                    } else {
+                        String lastElement = dataCenter.getArray();
+                        String updatedArray = "";
+
+                        dataCenter.setArray(updatedArray);
+                        dataCenter.setIntArray(updatedArray);
+                        displayPanel.updateArray(dataCenter.getArray(), true);
+
+                    }
+
+                } else {
+                    String valueInputString = valueInput.getText();
+                    String indexInputString = indexInput.getText();
+
+                    // Check if the index input is empty (default), then delete the first
+                    // occurence of the specified value
+                    if (indexInputString.equals("") && !valueInputString.equals("")) {
+
+                        dataCenter.setValue(valueInputString);
+
+                        ArrayList<Integer> intArray = dataCenter.getIntArray();
+                        int indexOfValue = intArray.indexOf(Integer.parseInt(valueInputString));
+
+                        if (indexOfValue == -1) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Error: Value not found in the list. Please enter a valid value.",
+                                    "ERROR: Invalid Input",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+
+                        intArray.remove(indexOfValue);
+
+                        String updatedArrayStringWithBrackets = intArray.toString(); // Convert the array to a string,
+                                                                                     // still have square brackets
+
+                        String updatedArray = updatedArrayStringWithBrackets.substring(1,
+                                updatedArrayStringWithBrackets.length() - 1); // Remove the square brackets
+
+                        dataCenter.setArray(updatedArray);
+                        dataCenter.setIntArray(updatedArray);
+                        displayPanel.updateArray(dataCenter.getArray(), true);
+                        System.out.println("Deleted " + valueInputString + " at index " + indexOfValue);
+
+                    } else { // Delete at the specified index
+
+                        // Insert the value at the specified index
+                        dataCenter.setIndex(indexInputString);
+                        int index = Integer.parseInt(dataCenter.getIndex());
+
+                        // Check if the index is out of range
+                        if (index > dataCenter.getIntArray().size()) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Error: Index out of range for size " + dataCenter.getIntArray().size()
+                                            + ". Please enter a valid index,",
+                                    "ERROR: Invalid Input",
+                                    JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+
+                        ArrayList<Integer> intArray = dataCenter.getIntArray();
+                        int value = intArray.get(index);
+                        intArray.remove(index);
+
+                        String updatedArrayStringWithBrackets = intArray.toString(); // Convert the array to a string,
+                                                                                     // still have square brackets
+
+                        String updatedArrayString = updatedArrayStringWithBrackets.substring(1,
+                                updatedArrayStringWithBrackets.length() - 1); // Remove the square brackets
+
+                        // Update the array in the dataCenter and the displayPanel
+                        dataCenter.setArray(updatedArrayString);
+                        dataCenter.setIntArray(updatedArrayString);
+                        displayPanel.updateArray(updatedArrayString, true);
+
+                        System.out.println("Updated array: " + updatedArrayString);
+
+                        System.out.println("Deleted " + value + " at index " + index);
+
+                    }
+                    // Clear the input fields
+                    valueInput.setText("");
+                    indexInput.setText("");
+                    arrayInput.setText("");
+
+                    // Reset the index and value in the dataCenter
+                    dataCenter.setIndex("");
+                    dataCenter.setValue("");
+                }
             }
         });
         Styles.styleButton(deleteButton);
