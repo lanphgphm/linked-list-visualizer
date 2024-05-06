@@ -1,7 +1,6 @@
 package com.linkedlistvisualizer.components.layout;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.swing.*;
