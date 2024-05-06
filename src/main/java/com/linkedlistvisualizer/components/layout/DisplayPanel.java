@@ -12,7 +12,6 @@ import com.linkedlistvisualizer.components.LL.Car;
 import com.linkedlistvisualizer.components.LL.LeftToRightLink;
 import com.linkedlistvisualizer.components.LL.RightToLeftLink;
 import com.linkedlistvisualizer.components.LL.VerticalLink;
-import com.linkedlistvisualizer.components.LL.LeftToRightLink;
 
 public class DisplayPanel extends JPanel {
 
@@ -21,12 +20,8 @@ public class DisplayPanel extends JPanel {
 
     public DisplayPanel(DataCenter dataCenter) {
         this.constraints = Styles.styleDisplayPanel(this);
-        // this.constraints.anchor = GridBagConstraints.NORTHWEST;
 
         String arrayInputString = dataCenter.getArray();
-        // uncomment to use value and index
-        // String valueInputString = dataCenter.getValue();
-        // String indexInputString = dataCenter.getIndex();
 
         renderArray(this, arrayInputString);
 

@@ -19,12 +19,12 @@ public class ControlPanel extends JPanel {
     private LabelledTextInput indexInput;
     private DataCenter dataCenter;
     private DisplayPanel displayPanel;
-    private SudokuPanel sudokuPanel; 
+    private SudokuPanel sudokuPanel;
 
     public ControlPanel(DataCenter dataCenter, DisplayPanel displayPanel, SudokuPanel sudokuPanel) {
         this.dataCenter = dataCenter;
         this.displayPanel = displayPanel;
-        this.sudokuPanel = sudokuPanel; 
+        this.sudokuPanel = sudokuPanel;
         int W = 360; // width
         int H = 600; // height
         int O = 40; // offset
@@ -45,15 +45,17 @@ public class ControlPanel extends JPanel {
         setArrayButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (arrayInput.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Error: Invalid input! Please enter a list.",
-                            "ERROR: Invalid Input",
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
-                    String arrayInputString = arrayInput.getText();
-                    ControlPanel.this.dataCenter.setArray(arrayInputString);
-                    displayPanel.updateArray(arrayInputString, false);
-                }
+                // if (arrayInput.getText().equals("")) {
+                // JOptionPane.showMessageDialog(displayPanel, "Error: Invalid input! Please
+                // enter a
+                // list.",
+                // "ERROR: Invalid Input",
+                // JOptionPane.ERROR_MESSAGE);
+                // } else {
+                // }
+                String arrayInputString = arrayInput.getText();
+                ControlPanel.this.dataCenter.setArray(arrayInputString);
+                displayPanel.updateArray(arrayInputString, false);
             }
         });
         Styles.styleButton(setArrayButton);
@@ -64,27 +66,28 @@ public class ControlPanel extends JPanel {
         this.valueInput = new LabelledTextInput("Value", "1", textW, textH);
         innerPanel.add(this.valueInput);
         // button to set valueinput
-        JButton setValueButton = new JButton("Set Value");
-        setValueButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (valueInput.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null,
-                            "Error: Invalid input! Please enter an integer. Set Value button",
-                            "ERROR: Invalid Input",
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
-                    String valueInputString = valueInput.getText();
-                    dataCenter.setValue(valueInputString);
-                    String updatedArray = dataCenter.getArray() + ", " + valueInputString;
-                    dataCenter.setArray(updatedArray);
-                    System.out.println("Value set to: " + valueInputString);
-                }
-            }
-        });
-        Styles.styleButton(setValueButton);
-        innerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add a vertical spacer of 10 pixels
-        innerPanel.add(setValueButton);
+        // JButton setValueButton = new JButton("Set Value");
+        // setValueButton.addActionListener(new ActionListener() {
+        // @Override
+        // public void actionPerformed(ActionEvent e) {
+        // if (valueInput.getText().equals("")) {
+        // JOptionPane.showMessageDialog(displayPanel,
+        // "Error: Invalid input! Please enter an integer. Set Value button",
+        // "ERROR: Invalid Input",
+        // JOptionPane.ERROR_MESSAGE);
+        // } else {
+        // String valueInputString = valueInput.getText();
+        // dataCenter.setValue(valueInputString);
+        // String updatedArray = dataCenter.getArray() + ", " + valueInputString;
+        // dataCenter.setArray(updatedArray);
+        // System.out.println("Value set to: " + valueInputString);
+        // }
+        // }
+        // });
+        // Styles.styleButton(setValueButton);
+        // innerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add a vertical
+        // spacer of 10 pixels
+        // innerPanel.add(setValueButton);
 
         // index input
         // this.indexInput = new LabelledTextInput("Index (Optional)", "-1", textW,
@@ -92,26 +95,28 @@ public class ControlPanel extends JPanel {
         this.indexInput = new LabelledTextInput("Index (Optional)", "", textW, textH);
         innerPanel.add(this.indexInput);
         // button to set indexinput
-        JButton setIndexButton = new JButton("Set Index");
-        setIndexButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (indexInput.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Error: Invalid input! Please enter a positive integer.",
-                            "ERROR: Invalid Input",
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
-                    String indexInputString = indexInput.getText();
-                    ControlPanel.this.dataCenter.setIndex(indexInputString);
-                    System.out.println("Index set to: " + indexInputString);
-                }
-            }
-        });
-        Styles.styleButton(setIndexButton);
+        // JButton setIndexButton = new JButton("Set Index");
+        // setIndexButton.addActionListener(new ActionListener() {
+        // @Override
+        // public void actionPerformed(ActionEvent e) {
+        // if (indexInput.getText().equals("")) {
+        // JOptionPane.showMessageDialog(displayPanel, "Error: Invalid input! Please
+        // enter a
+        // positive integer.",
+        // "ERROR: Invalid Input",
+        // JOptionPane.ERROR_MESSAGE);
+        // } else {
+        // String indexInputString = indexInput.getText();
+        // ControlPanel.this.dataCenter.setIndex(indexInputString);
+        // System.out.println("Index set to: " + indexInputString);
+        // }
+        // }
+        // });
+        // Styles.styleButton(setIndexButton);
         innerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add a vertical spacer of 10 pixels
-        innerPanel.add(setIndexButton);
+        // innerPanel.add(setIndexButton);
 
-// <<<<<<< HEAD
+        // <<<<<<< HEAD
         JPanel buttonPanel = new JPanel();
         GridBagConstraints constraints = Styles.styleButtonPanel(buttonPanel);
 
@@ -121,14 +126,11 @@ public class ControlPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 String valueInputString = valueInput.getText();
-                // System.out.println("Value set to: " + valueInputString);
-                // dataCenter.setIndex(indexInput.getText());
-                // int index = DisplayPanel.parseStringToInt(dataCenter.getIndex());
-                // System.out.println("Index set to: " + index);
+                String indexInputString = indexInput.getText();
 
                 // Check if the value input is empty
                 if (valueInputString.equals("")) {
-                    JOptionPane.showMessageDialog(null,
+                    JOptionPane.showMessageDialog(displayPanel,
                             "Error: Invalid input! Please enter an integer as a value. Insert button",
                             "ERROR: Invalid Input",
                             JOptionPane.ERROR_MESSAGE);
@@ -136,7 +138,7 @@ public class ControlPanel extends JPanel {
 
                     dataCenter.setValue(valueInputString);
                     // Check if the index input is empty or -1 (default), then insert at the end
-                    if (dataCenter.getIndex().equals("") || dataCenter.getIndex().equals("-1")) {
+                    if (indexInputString.equals("") || indexInputString.equals("-1")) {
 
                         String updatedArray = dataCenter.getArray() + ", " + valueInputString;
 
@@ -148,11 +150,11 @@ public class ControlPanel extends JPanel {
 
                     } else { // Insert at the specified index
 
-                        int index = Integer.parseInt(dataCenter.getIndex());
+                        int index = Integer.parseInt(indexInputString);
 
                         // Check if the index is out of range
                         if (index > dataCenter.getIntArray().size()) {
-                            JOptionPane.showMessageDialog(null,
+                            JOptionPane.showMessageDialog(displayPanel,
                                     "Error: Index out of range for size " + dataCenter.getIntArray().size()
                                             + ". Please enter a valid index,",
                                     "ERROR: Invalid Input",
@@ -206,7 +208,7 @@ public class ControlPanel extends JPanel {
                 // If both value and index are not empty, show a warning message
                 if ((!valueInput.getText().equals("") && !indexInput.getText().equals(""))) {
 
-                    JOptionPane.showMessageDialog(null,
+                    JOptionPane.showMessageDialog(displayPanel,
                             "Error: Both value and index are not empty. Please enter only one of them.",
                             "ERROR: Invalid Input", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -251,7 +253,7 @@ public class ControlPanel extends JPanel {
                         int indexOfValue = intArray.indexOf(Integer.parseInt(valueInputString));
 
                         if (indexOfValue == -1) {
-                            JOptionPane.showMessageDialog(null,
+                            JOptionPane.showMessageDialog(displayPanel,
                                     "Error: Value not found in the list. Please enter a valid value.",
                                     "ERROR: Invalid Input",
                                     JOptionPane.ERROR_MESSAGE);
@@ -279,7 +281,7 @@ public class ControlPanel extends JPanel {
 
                         // Check if the index is out of range
                         if (index > dataCenter.getIntArray().size()) {
-                            JOptionPane.showMessageDialog(null,
+                            JOptionPane.showMessageDialog(displayPanel,
                                     "Error: Index out of range for size " + dataCenter.getIntArray().size()
                                             + ". Please enter a valid index,",
                                     "ERROR: Invalid Input",
@@ -325,8 +327,8 @@ public class ControlPanel extends JPanel {
         add(innerPanel);
 
         add(buttonPanel);
-// =======
-        // add(innerPanel, BorderLayout.CENTER);
+        // =======
+        // add(new JPanel());
 
         // Tan
         // Clear sudoku button
@@ -356,11 +358,11 @@ public class ControlPanel extends JPanel {
         });
         Styles.styleSudokuSolveButton(solveSudokuButton);
         buttonPanel.add(solveSudokuButton, constraints);
-// >>>>>>> master
+        // >>>>>>> master
     }
 
-    public String getArrayInput(){
-        return this.arrayInput.getText(); 
+    public String getArrayInput() {
+        return this.arrayInput.getText();
     }
 
     public String getValueInput() {
