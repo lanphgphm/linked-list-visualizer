@@ -40,8 +40,7 @@ public class Styles {
     }
 
     public static void styleMainWindow(JFrame frame) {
-        // frame.setSize(1080, 600);
-        frame.setSize(1380, 600);
+        frame.setSize(1080, 600);
         frame.setResizable(false);
         ImageIcon img = new ImageIcon("src/assets/Tan_Icon.jpg");
         frame.setIconImage(img.getImage());
