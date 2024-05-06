@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 import com.linkedlistvisualizer.components.LL.Car;
-import com.linkedlistvisualizer.components.LL.Link;
 import com.linkedlistvisualizer.components.layout.ControlPanel;
 import com.linkedlistvisualizer.components.layout.DisplayPanel;
 import com.linkedlistvisualizer.components.layout.SudokuPanel;
