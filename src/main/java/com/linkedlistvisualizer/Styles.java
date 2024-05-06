@@ -40,8 +40,7 @@ public class Styles {
     }
 
     public static void styleMainWindow(JFrame frame) {
-        // frame.setSize(1080, 600);
-        frame.setSize(1380, 600);
+        frame.setSize(1080, 600);
         frame.setResizable(false);
         ImageIcon img = new ImageIcon("src/assets/Tan_Icon.jpg");
         frame.setIconImage(img.getImage());
@@ -72,14 +71,17 @@ public class Styles {
         panel.setBackground(XPBEIGE);
     }
 
-    public static void styleDisplayPanel(JPanel panel) {
+    public static GridBagConstraints styleDisplayPanel(JPanel panel) {
         panel.setBackground(Color.WHITE);
         panel.setPreferredSize(new Dimension(720 - borderSize, 600));
         panel.setBorder(new CompoundBorder(
                 new EmptyBorder(0, 5, 0, 0),
                 new BevelBorder(BevelBorder.RAISED, XPWHITE, XPGREY)));
 
-        panel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 20));
+        // panel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 20));
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        return constraints;
     }
 
     public static void setCarDataLabel(JLabel label) {
