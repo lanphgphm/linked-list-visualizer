@@ -111,7 +111,7 @@ public class ControlPanel extends JPanel {
         innerPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add a vertical spacer of 10 pixels
         innerPanel.add(setIndexButton);
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
         JPanel buttonPanel = new JPanel();
         GridBagConstraints constraints = Styles.styleButtonPanel(buttonPanel);
 
@@ -325,8 +325,8 @@ public class ControlPanel extends JPanel {
         add(innerPanel);
 
         add(buttonPanel);
-=======
-        add(innerPanel, BorderLayout.CENTER);
+// =======
+        // add(innerPanel, BorderLayout.CENTER);
 
         // Tan
         // Clear sudoku button
@@ -339,7 +339,8 @@ public class ControlPanel extends JPanel {
             }
         });
         Styles.styleSudokuClearButton(clearSudokuButton);
-        add(clearSudokuButton, BorderLayout.SOUTH);
+        constraints.gridy = 2;
+        buttonPanel.add(clearSudokuButton, constraints);
 
         // Tan
         // Solve sudoku button
@@ -354,8 +355,8 @@ public class ControlPanel extends JPanel {
             }
         });
         Styles.styleSudokuSolveButton(solveSudokuButton);
-        add(solveSudokuButton, BorderLayout.SOUTH);
->>>>>>> master
+        buttonPanel.add(solveSudokuButton, constraints);
+// >>>>>>> master
     }
 
     public String getArrayInput(){
