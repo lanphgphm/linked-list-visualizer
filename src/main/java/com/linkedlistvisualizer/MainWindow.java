@@ -31,7 +31,6 @@ public class MainWindow extends javax.swing.JFrame {
         mainPanel.add(displayPanel, BorderLayout.WEST);
 
         frame.setVisible(true);
-
     }
 
     public static void main(String[] args) {

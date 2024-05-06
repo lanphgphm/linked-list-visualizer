@@ -18,10 +18,12 @@ public class ControlPanel extends JPanel {
     private LabelledTextInput indexInput;
     private DataCenter dataCenter;
     private DisplayPanel displayPanel;
+    private SudokuPanel sudokuPanel; 
 
-    public ControlPanel(DataCenter dataCenter, DisplayPanel displayPanel) {
+    public ControlPanel(DataCenter dataCenter, DisplayPanel displayPanel, SudokuPanel sudokuPanel) {
         this.dataCenter = dataCenter;
         this.displayPanel = displayPanel;
+        this.sudokuPanel = sudokuPanel; 
         int W = 360; // width
         int H = 600; // height
         int O = 40; // offset
@@ -81,10 +83,38 @@ public class ControlPanel extends JPanel {
         innerPanel.add(setIndexButton);
 
         add(innerPanel, BorderLayout.CENTER);
+
+        // Tan
+        // Clear sudoku button
+        JButton clearSudokuButton = new JButton("Clear Sudoku");
+        clearSudokuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sudokuPanel.changeImage();
+                sudokuPanel.clearSudoku();
+            }
+        });
+        Styles.styleSudokuClearButton(clearSudokuButton);
+        add(clearSudokuButton, BorderLayout.SOUTH);
+
+        // Tan
+        // Solve sudoku button
+        JButton solveSudokuButton = new JButton("Solve Sudoku");
+        solveSudokuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sudokuPanel.changeImage();
+                sudokuPanel.setSudokuMatrix();
+                sudokuPanel.setNoti("Solving Sudoku...");
+                sudokuPanel.solveSudoku();
+            }
+        });
+        Styles.styleSudokuSolveButton(solveSudokuButton);
+        add(solveSudokuButton, BorderLayout.SOUTH);
     }
 
-    public String getArrayInput() {
-        return this.arrayInput.getText();
+    public String getArrayInput(){
+        return this.arrayInput.getText(); 
     }
 
     public String getValueInput() {
