@@ -118,10 +118,7 @@ public class ControlPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 String valueInputString = valueInput.getText();
-                // System.out.println("Value set to: " + valueInputString);
-                // dataCenter.setIndex(indexInput.getText());
-                // int index = DisplayPanel.parseStringToInt(dataCenter.getIndex());
-                // System.out.println("Index set to: " + index);
+                String indexInputString = indexInput.getText();
 
                 // Check if the value input is empty
                 if (valueInputString.equals("")) {
@@ -133,19 +130,29 @@ public class ControlPanel extends JPanel {
 
                     dataCenter.setValue(valueInputString);
                     // Check if the index input is empty or -1 (default), then insert at the end
-                    if (dataCenter.getIndex().equals("") || dataCenter.getIndex().equals("-1")) {
+                    if (indexInputString.equals("") || indexInputString.equals("-1")) {
+                        // TODO: Insert value to an empty list
+                        if (dataCenter.getArray().equals("")) {
 
-                        String updatedArray = dataCenter.getArray() + ", " + valueInputString;
+                            dataCenter.setArray(valueInputString);
+                            dataCenter.setIntArray(valueInputString);
+                            displayPanel.updateArray(valueInputString, true);
 
-                        dataCenter.setArray(updatedArray);
-                        dataCenter.setIntArray(updatedArray);
-                        displayPanel.updateArray(dataCenter.getArray(), true);
+                        } else {
 
-                        System.out.println("Inserted " + valueInputString + " at the end");
+                            String updatedArray = dataCenter.getArray() + ", " + valueInputString;
+
+                            dataCenter.setArray(updatedArray);
+                            dataCenter.setIntArray(updatedArray);
+                            displayPanel.updateArray(dataCenter.getArray(), true);
+
+                            System.out.println("Inserted " + valueInputString + " at the end");
+                        }
 
                     } else { // Insert at the specified index
 
-                        int index = Integer.parseInt(dataCenter.getIndex());
+                        dataCenter.setIndex(indexInputString);
+                        int index = Integer.parseInt(indexInputString);
 
                         // Check if the index is out of range
                         if (index > dataCenter.getIntArray().size()) {
