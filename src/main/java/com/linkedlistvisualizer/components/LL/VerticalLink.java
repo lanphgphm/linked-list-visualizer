@@ -1,20 +1,21 @@
 package com.linkedlistvisualizer.components.LL;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.geom.Line2D;
 
-public class Link extends JPanel {
+public class VerticalLink extends JPanel {
 
-    public Link() {
+    public VerticalLink() {
         this.setOpaque(false); // Make the panel transparent
-        // this.setLayout(new FlowLayout(FlowLayout.LEFT)); // Set the layout to
-        // left-aligned
+        this.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.WHITE));
+
     }
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(50, 10); // Set the preferred width to 50 and height to 10
+        return new Dimension(120, 60); // Set the preferred width to 50 and height to 10
     }
 
     @Override
@@ -22,15 +23,16 @@ public class Link extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.BLACK);
-        int x1 = 0, y1 = this.getHeight() / 2, x2 = this.getWidth(), y2 = this.getHeight() / 2;
+        int x1 = this.getWidth() / 2, y1 = 0,
+                x2 = (this.getWidth() / 2), y2 = this.getHeight() - 10;
         g2.draw(new Line2D.Double(x1, y1, x2, y2));
 
         // Draw the arrow head
         int arrowHeadLength = 10, arrowHeadWidth = 4;
         Polygon arrowHead = new Polygon();
         arrowHead.addPoint(x2, y2);
-        arrowHead.addPoint(x2 - arrowHeadLength, y2 - arrowHeadWidth);
-        arrowHead.addPoint(x2 - arrowHeadLength, y2 + arrowHeadWidth);
+        arrowHead.addPoint(x2 - arrowHeadWidth, y2 - arrowHeadLength);
+        arrowHead.addPoint(x2 + arrowHeadWidth, y2 - arrowHeadLength);
         g2.fill(arrowHead);
     }
 }
