@@ -88,10 +88,11 @@ public class ControlPanel extends JPanel {
         clearSudokuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sudokuPanel.changeImage();
                 sudokuPanel.clearSudoku();
             }
         });
-        Styles.styleButton(clearSudokuButton);
+        Styles.styleSudokuClearButton(clearSudokuButton);
         add(clearSudokuButton, BorderLayout.SOUTH);
 
         // Tan
@@ -100,11 +101,13 @@ public class ControlPanel extends JPanel {
         solveSudokuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sudokuPanel.changeImage();
                 sudokuPanel.setSudokuMatrix();
+                sudokuPanel.setNoti("Solving Sudoku...");
                 sudokuPanel.solveSudoku();
             }
         });
-        Styles.styleButton(solveSudokuButton);
+        Styles.styleSudokuSolveButton(solveSudokuButton);
         add(solveSudokuButton, BorderLayout.SOUTH);
     }
 
