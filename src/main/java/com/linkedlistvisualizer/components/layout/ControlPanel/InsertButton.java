@@ -46,52 +46,62 @@ public class InsertButton extends JButton {
                             JOptionPane.ERROR_MESSAGE);
                 } else {
 
-                    dataCenter.setValue(valueInputString);
-                    // Check if the index input is empty or -1 (default), then insert at the end
-                    if (indexInputString.equals("") || indexInputString.equals("-1")) {
+                    if (dataCenter.getIntArray().size() == 0) {
+                        dataCenter.setArray(valueInputString);
+                        dataCenter.setValue(valueInputString);
+                        dataCenter.setIntArray(valueInputString);
+                        displayPanel.updateArray(valueInputString);
 
-                        String updatedArray = dataCenter.getArray() + ", " + valueInputString;
+                    } else {
 
-                        dataCenter.setArray(updatedArray);
-                        dataCenter.setIntArray(updatedArray);
-                        displayPanel.updateArray(dataCenter.getArray());
+                        dataCenter.setValue(valueInputString);
+                        // Check if the index input is empty or -1 (default), then insert at the end
+                        if (indexInputString.equals("") || indexInputString.equals("-1")) {
 
-                        System.out.println("Inserted " + valueInputString + " at the end");
+                            String updatedArray = dataCenter.getArray() + ", " + valueInputString;
 
-                    } else { // Insert at the specified index
+                            dataCenter.setArray(updatedArray);
+                            dataCenter.setIntArray(updatedArray);
+                            displayPanel.updateArray(dataCenter.getArray());
 
-                        int index = Integer.parseInt(indexInputString);
+                            System.out.println("Inserted " + valueInputString + " at the end");
 
-                        // Check if the index is out of range
-                        if (index > dataCenter.getIntArray().size()) {
-                            JOptionPane.showMessageDialog(displayPanel,
-                                    "Error: Index out of range for size " + dataCenter.getIntArray().size()
-                                            + ". Please enter a valid index,",
-                                    "ERROR: Invalid Input",
-                                    JOptionPane.ERROR_MESSAGE);
-                            return;
+                        } else { // Insert at the specified index
+
+                            int index = Integer.parseInt(indexInputString);
+
+                            // Check if the index is out of range
+                            if (index > dataCenter.getIntArray().size()) {
+                                JOptionPane.showMessageDialog(displayPanel,
+                                        "Error: Index out of range for size " + dataCenter.getIntArray().size()
+                                                + ". Please enter a valid index,",
+                                        "ERROR: Invalid Input",
+                                        JOptionPane.ERROR_MESSAGE);
+                                return;
+                            }
+
+                            ArrayList<Integer> intArray = dataCenter.getIntArray();
+                            intArray.add(index, Integer.parseInt(valueInputString));
+
+                            String updatedArrayStringWithBrackets = intArray.toString(); // Convert the array to a
+                                                                                         // string,
+                                                                                         // still have square brackets
+
+                            String updatedArrayString = updatedArrayStringWithBrackets.substring(1,
+                                    updatedArrayStringWithBrackets.length() - 1); // Remove the square brackets
+
+                            // Update the array in the dataCenter and the displayPanel
+                            dataCenter.setArray(updatedArrayString);
+                            dataCenter.setIntArray(updatedArrayString);
+                            displayPanel.updateArray(updatedArrayString);
+
+                            System.out.println("Updated array: "
+                                    + updatedArrayStringWithBrackets.strip().substring(1,
+                                            updatedArrayStringWithBrackets.length() - 1));
+
+                            System.out.println("Inserted " + valueInputString + " at index " + index);
+
                         }
-
-                        ArrayList<Integer> intArray = dataCenter.getIntArray();
-                        intArray.add(index, Integer.parseInt(valueInputString));
-
-                        String updatedArrayStringWithBrackets = intArray.toString(); // Convert the array to a string,
-                                                                                     // still have square brackets
-
-                        String updatedArrayString = updatedArrayStringWithBrackets.substring(1,
-                                updatedArrayStringWithBrackets.length() - 1); // Remove the square brackets
-
-                        // Update the array in the dataCenter and the displayPanel
-                        dataCenter.setArray(updatedArrayString);
-                        dataCenter.setIntArray(updatedArrayString);
-                        displayPanel.updateArray(updatedArrayString);
-
-                        System.out.println("Updated array: "
-                                + updatedArrayStringWithBrackets.strip().substring(1,
-                                        updatedArrayStringWithBrackets.length() - 1));
-
-                        System.out.println("Inserted " + valueInputString + " at index " + index);
-
                     }
                     // Clear the input fields
                     valueInput.setText("");
