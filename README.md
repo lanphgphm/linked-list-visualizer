@@ -106,4 +106,4 @@ users :)
  
 Desktop installation guide would be updated in due time. 
 
-**Last edited**: Apr 19, 2024 by Lan Phuong
+**Last edited**: May 06, 2024 by LP, Sid, Tan.
