@@ -66,10 +66,21 @@ public class Styles {
                 new BevelBorder(BevelBorder.RAISED, XPWHITE, XPGREY)));
     }
 
-    public static void styleInnerPanel(JPanel panel) {
+    public static GridBagConstraints styleInnerPanel(JPanel panel) {
         panel.setBorder(new EmptyBorder(0, borderSize, 0, 0));
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        // panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setLayout(new GridBagLayout());
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.NORTH;
+        constraints.insets = new Insets(5, 5, 5, 5);
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+
         panel.setBackground(XPBEIGE);
+        // panel.setBackground(Color.WHITE);
+
+        return constraints;
     }
 
     public static GridBagConstraints styleButtonPanel(JPanel panel) {
