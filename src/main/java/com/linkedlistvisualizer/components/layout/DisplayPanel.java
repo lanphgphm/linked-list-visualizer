@@ -1,27 +1,16 @@
 package com.linkedlistvisualizer.components.layout;
 
 import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 import javax.swing.*;
 
 import com.linkedlistvisualizer.DataCenter;
 import com.linkedlistvisualizer.Styles;
 import com.linkedlistvisualizer.components.LL.Car;
-import com.linkedlistvisualizer.components.LL.LeftToRightLink;
-import com.linkedlistvisualizer.components.LL.RightToLeftLink;
-import com.linkedlistvisualizer.components.LL.VerticalLink;
-import com.linkedlistvisualizer.components.LL.LeftToRightLink;
+import com.linkedlistvisualizer.components.LL.Link;
 
 public class DisplayPanel extends JPanel {
-
-    private static final int COMP_PER_ROW = 7;
-    private GridBagConstraints constraints;
-
     public DisplayPanel(DataCenter dataCenter) {
-        this.constraints = Styles.styleDisplayPanel(this);
-        // this.constraints.anchor = GridBagConstraints.NORTHWEST;
+        Styles.styleDisplayPanel(this);
 
         String arrayInputString = dataCenter.getArray();
         // uncomment to use value and index
@@ -71,84 +60,41 @@ public class DisplayPanel extends JPanel {
             if (i < cars.length - 1) {
                 cars[i].setNext(cars[i + 1]);
             }
-        }
-
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.weightx = 1;
-        constraints.anchor = GridBagConstraints.NORTHWEST;
-
-        ArrayList<Component> components = getAllCarsAndLinks(cars);
-
-        boolean leftToRight = true;
-
-        for (int i = 0; i < components.size(); i++) {
-
-            // Add a vertical link every 4 components
-            if (((constraints.gridx + 1) % COMP_PER_ROW == 0) && (i != 0)) {
-                if (leftToRight) {
-                    constraints.gridy++;
-                    displayPanel.add(new VerticalLink(), constraints);
-                    constraints.gridy++;
-                    leftToRight = false;
-                } else {
-                    constraints.gridy++;
-                    displayPanel.add(new VerticalLink(), constraints);
-                    constraints.gridy++;
-                    leftToRight = true;
-
-                }
-            }
-
-            if (leftToRight) {
-                constraints.gridx = (i % COMP_PER_ROW);
-                displayPanel.add(components.get(i), constraints);
+            if (cars[i].getNext() != null) {
+                displayPanel.add(cars[i]);
+                displayPanel.add(new Link());
             } else {
-                constraints.gridx = (COMP_PER_ROW - 1) - (i % COMP_PER_ROW);
-                displayPanel.add(components.get(i), constraints);
-                constraints.gridx--;
-
+                displayPanel.add(cars[i]);
             }
         }
-
     }
 
-    public ArrayList<Component> getAllCarsAndLinks(Car[] cars) {
-        int carCounter = 1;
-        boolean leftToRight = true;
-        ArrayList<Component> components = new ArrayList<>();
-        for (Car car : cars) {
-            if (car.getNext() != null) {
-                if (carCounter % 4 != 0 || carCounter == 0) {
-                    if (leftToRight) {
-                        components.add(car);
-                        carCounter++;
-                        components.add(new LeftToRightLink());
-                    } else {
-                        components.add(car);
-                        carCounter++;
-                        components.add(new RightToLeftLink());
-                    }
-                } else {
-                    if (leftToRight) {
-                        components.add(car);
-                        carCounter++;
-                        // carCounter++;
-                        leftToRight = false;
-                    } else {
-                        components.add(car);
-                        carCounter++;
-                        // carCounter++;
-                        leftToRight = true;
-                    }
-                }
+    public Point[] getAllCarPos() {
 
-            } else {
-                components.add(car);
+        Point[] carPosition = new Point[this.getComponents().length];
+        Component[] allCars = this.getComponents();
 
+        for (int i = 0; i < this.getComponents().length; i++) {
+            if (allCars[i] instanceof Car) {
+
+                Car car = (Car) allCars[i];
+                carPosition[i] = car.getPosition();
             }
         }
-        return components;
+        return carPosition;
     }
 
+    public boolean willComponentOverflow(JPanel displayPanel, Component newComponent) {
+        int totalWidth = 0;
+        for (Component component : displayPanel.getComponents()) {
+            totalWidth += component.getPreferredSize().width;
+        }
+
+        // Add the width of the new component and the horizontal gap
+        FlowLayout layout = (FlowLayout) displayPanel.getLayout();
+        totalWidth += newComponent.getPreferredSize().width + layout.getHgap();
+
+        // Compare with the width of the displayPanel
+        return totalWidth > displayPanel.getWidth();
+    }
 }

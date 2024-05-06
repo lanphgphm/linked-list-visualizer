@@ -1,19 +1,37 @@
 package com.linkedlistvisualizer.components.layout;
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.text.Style;
+
+import com.linkedlistvisualizer.Styles;
+import com.linkedlistvisualizer.components.layout.SudokuNotiPanel;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
 public class SudokuPanel extends JPanel {
     private int gridSize = 9;
     private int h = 250, w = h;
     private JTextField[][] gridTextFields;
-    private JPanel sudokuPanel;
+    private JPanel largeSudokuPanel, sudokuPanel;
+    private SudokuNotiPanel notiPanel;
+    private RandomImage randImg;
     private int sudokuMatrix[][] = new int[gridSize][gridSize];
     
     public SudokuPanel() {
+
+        randImg = new RandomImage();
+
         gridTextFields = new JTextField[gridSize][gridSize];
+        largeSudokuPanel = new JPanel(new GridBagLayout());
         sudokuPanel = new JPanel(new GridLayout(gridSize, gridSize, 0, 0));
-        sudokuPanel.setPreferredSize(new Dimension(w, h));
+        notiPanel = new SudokuNotiPanel();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        Styles.styleSudokuPanel(sudokuPanel, w, h);
 
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
@@ -28,33 +46,122 @@ public class SudokuPanel extends JPanel {
                     gridTextFields[i][j].setBackground(new Color(255, 255, 255));
                 }
 
+                // There can be a better way to set border using nested 3x3 in 3x3, however, to do that we have 
+                // to refactor all the code for solving and printing which is tedious.
                 // // Set border
-                // if ((i + 1) % 3 == 0 && (j + 1) % 3 == 0) {
-                //     gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, Color.BLACK));
-                // } else if ((i + 1) % 3 == 0) {
-                //     gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1, Color.BLACK));
-                // } else if ((j + 1) % 3 == 0) {
-                //     gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 0, Color.BLACK));
+                // if (i == 2 || i == 5) {
+                //     if (j == 2 || j == 5) {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 3, 3, Color.RED), BorderFactory.createMatteBorder(1, 1, 0, 0, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 3, 3, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, Color.BLACK));
+                //     } else if (j == 3 || j == 6) {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 3, 3, 0, Color.RED), BorderFactory.createMatteBorder(1, 0, 0, 1, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 3, 3, 0, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 0, 0, 1, Color.BLACK));
+                //     } else {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED), BorderFactory.createMatteBorder(1, 1, 0, 1, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1, Color.BLACK));
+                //     }
+                // } else if (i == 3 || i == 6) {
+                //     if (j == 2 || j == 5) {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(3, 0, 0, 3, Color.RED), BorderFactory.createMatteBorder(0, 1, 1, 0, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(3, 0, 0, 3, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 1, 1, 0, Color.BLACK));
+                //     } else if (j == 3 || j == 6) {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(3, 3, 0, 0, Color.RED), BorderFactory.createMatteBorder(0, 0, 1, 1, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(3, 3, 0, 0, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.BLACK));
+                //     } else {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(3, 0, 0, 0, Color.RED), BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(3, 0, 0, 0, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.BLACK));
+                //     }
+                // } else if (i > 3 && i < 5) {
+                //     if (j == 2 || j == 5) {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 0, 3, Color.RED), BorderFactory.createMatteBorder(1, 1, 1, 0, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 3, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 0, Color.BLACK));
+                //     } else if (j == 3 || j == 6) {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 3, 0, 0, Color.RED), BorderFactory.createMatteBorder(1, 0, 1, 1, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 3, 0, 0, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 0, 1, 1, Color.BLACK));
+                //     } else {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.RED), BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+                //     }
                 // } else {
-                //     gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+                //     if (j == 2 || j == 5) {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 0, 3, Color.RED), BorderFactory.createMatteBorder(1, 1, 1, 0, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 3, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 0, Color.BLACK));
+                //     } else if (j == 3 || j == 6) {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 3, 0, 0, Color.RED), BorderFactory.createMatteBorder(1, 0, 1, 1, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 3, 0, 0, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 0, 1, 1, Color.BLACK));
+                //     } else {
+                //         // Compound border
+                //         gridTextFields[i][j].setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.RED), BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK)));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.RED));
+                //         // gridTextFields[i][j].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+                //     }
                 // }
 
                 gridTextFields[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
                 gridTextFields[i][j].setInputVerifier(new SudokuInputVerifier(gridTextFields[i][j]));
 
                 sudokuPanel.add(gridTextFields[i][j]);
             }
         }
 
-        add(sudokuPanel);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.weightx = 1;
+        largeSudokuPanel.add(sudokuPanel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        largeSudokuPanel.add(notiPanel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        largeSudokuPanel.add(randImg, gbc);
+
+        add(largeSudokuPanel);
+    }
+
+    public void changeImage() {
+        randImg.changeImage();
     }
 
     public void clearSudoku() {
+        // TODO: Need threading control here
+        notiPanel.setNoti("Clearing Sudoku...");
+
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
                 gridTextFields[i][j].setText("");
             }
         }
+        setSudokuMatrix();
+
+        notiPanel.setNoti("Sudoku cleared!");
     }
     
     public void setSudokuMatrix() {
@@ -66,6 +173,15 @@ public class SudokuPanel extends JPanel {
                     sudokuMatrix[i][j] = Integer.parseInt(gridTextFields[i][j].getText());
                 }
             }
+        }
+    }
+
+    public void setSudokuMatrix(int r, int c) {
+        sudokuMatrix[r][c] = 0;
+        if (gridTextFields[r][c].getText().equals("")) {
+            sudokuMatrix[r][c] = 0;
+        } else {
+            sudokuMatrix[r][c] = Integer.parseInt(gridTextFields[r][c].getText());
         }
     }
 
@@ -82,12 +198,44 @@ public class SudokuPanel extends JPanel {
         }
     }
 
-    public void solveSudoku() {
-        solve(sudokuMatrix);
-        importSudokuMatrix(sudokuMatrix);
+    public void setNoti(String noti) {
+        notiPanel.setNoti(noti);
+        revalidate();
+        repaint();
     }
 
-    //
+    public void solveSudoku() {
+        // TODO: Need threading control here
+        // notiPanel.setNoti("Solving Sudoku...");
+
+        if (!checkAllValues()) {
+            notiPanel.setNoti("No solution found!");
+            return;
+        } else {
+            solve(sudokuMatrix);
+            importSudokuMatrix(sudokuMatrix);
+            if (!checkFinish(sudokuMatrix)) {
+                notiPanel.setNoti("No solution found!");
+            } else {
+                notiPanel.setNoti("Sudoku solved!");
+            }
+        }
+    }
+
+    // Initially, check all possible values for each cell
+    public boolean checkAllValues() {
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                if (sudokuMatrix[i][j] == 0) {
+                    if (find_possible_values(sudokuMatrix, i, j).length == 0) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     private int[] find_possible_values(int[][] matrix, int x, int y) {
         // x = row; y = column
 
@@ -256,13 +404,6 @@ public class SudokuPanel extends JPanel {
         return true;
     }
 
-    private void print2DArr(int[][] arr) {
-        for (int row = 0; row < arr.length; row++) {
-            System.out.println(Arrays.toString(arr[row]));
-        }
-        System.out.println();
-    }
-
     private class SudokuInputVerifier extends InputVerifier {
         private JTextField input;
         private Color previousColor;
@@ -279,6 +420,7 @@ public class SudokuPanel extends JPanel {
                 // this.input.setText("");
                 this.input.setBackground(new Color(255, 204, 204));
             } else {
+                setSudokuMatrix(sudokuPanel.getComponentZOrder(input) / 9, sudokuPanel.getComponentZOrder(input) % 9);
                 this.input.setBackground(previousColor);
             }
             return valid;
@@ -292,7 +434,16 @@ public class SudokuPanel extends JPanel {
             }
             try {
                 int value = Integer.parseInt(text);
-                return value > 0 && value <= gridSize; // Valid range 1 to gridSize
+                boolean flag = false;
+                sudokuMatrix[sudokuPanel.getComponentZOrder(input) / 9][sudokuPanel.getComponentZOrder(input) % 9] = 0;
+                int[] possibleValues = find_possible_values(sudokuMatrix, sudokuPanel.getComponentZOrder(input) / 9, sudokuPanel.getComponentZOrder(input) % 9);
+                for (int i = 0; i < possibleValues.length; i++) {
+                    if (value == possibleValues[i]) {
+                        flag = true;
+                        break;
+                    }
+                }
+                return value > 0 && value <= gridSize && flag; // Valid range 1 to gridSize
             } catch (NumberFormatException e) {
                 return false; // Only allow numbers
             }
