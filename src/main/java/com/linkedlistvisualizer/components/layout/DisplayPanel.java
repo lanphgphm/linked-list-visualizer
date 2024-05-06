@@ -34,12 +34,15 @@ public class DisplayPanel extends JPanel {
 
     }
 
-    public static int[] parseArrayInput(String arrayInputString) {
+    public static ArrayList<Integer> parseArrayInput(String arrayInputString) {
         String[] stringArray = arrayInputString.split(","); // Split the string into an array of strings
-        int[] intArray = new int[stringArray.length]; // Create an array of integers with the same length
+        ArrayList<Integer> intArray = new ArrayList<Integer>(); // Create an array of integers with the same length
 
+        if (stringArray.length == 1 && stringArray[0].equals("")) {
+            return intArray;
+        }
         for (int i = 0; i < stringArray.length; i++) {
-            intArray[i] = Integer.parseInt(stringArray[i].trim()); // Convert each string to an integer and store it in
+            intArray.add(Integer.parseInt(stringArray[i].trim())); // Convert each string to an integer and store it in
                                                                    // the array
         }
 
@@ -47,10 +50,22 @@ public class DisplayPanel extends JPanel {
     }
 
     public static int parseStringToInt(String string) {
-        return Integer.parseInt(string.trim());
+        if (string == null || string.equals("")) {
+            return -1;
+        }
+
+        try {
+            return Integer.parseInt(string.trim());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: Invalid input! Please enter an integer. ParseInt",
+                    "ERROR: Invalid Input",
+                    JOptionPane.ERROR_MESSAGE);
+
+            return -1;
+        }
     }
 
-    public void updateArray(String arrayStr) {
+    public void updateArray(String arrayStr, boolean animate) {
         this.removeAll();
 
         renderArray(this, arrayStr);
@@ -60,22 +75,22 @@ public class DisplayPanel extends JPanel {
     }
 
     public void renderArray(DisplayPanel displayPanel, String arrayStr) {
-        int[] newArray = parseArrayInput(arrayStr);
-        Car[] cars = new Car[newArray.length];
-        for (int i = 0; i < newArray.length; i++) {
-            Car car = new Car(newArray[i]);
-            cars[i] = car;
+        ArrayList<Integer> newArray = parseArrayInput(arrayStr);
+        ArrayList<Car> cars = new ArrayList<Car>();
+        for (int i = 0; i < newArray.size(); i++) {
+            Car car = new Car(newArray.get(i));
+            cars.add(car);
         }
 
-        for (int i = 0; i < cars.length; i++) {
-            if (i < cars.length - 1) {
-                cars[i].setNext(cars[i + 1]);
+        for (int i = 0; i < cars.size(); i++) {
+            if (i < cars.size() - 1) {
+                cars.get(i).setNext(cars.get(i + 1));
             }
         }
 
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.weightx = 1;
+        // constraints.weightx = 1;
         constraints.anchor = GridBagConstraints.NORTHWEST;
 
         ArrayList<Component> components = getAllCarsAndLinks(cars);
@@ -113,7 +128,7 @@ public class DisplayPanel extends JPanel {
 
     }
 
-    public ArrayList<Component> getAllCarsAndLinks(Car[] cars) {
+    public ArrayList<Component> getAllCarsAndLinks(ArrayList<Car> cars) {
         int carCounter = 1;
         boolean leftToRight = true;
         ArrayList<Component> components = new ArrayList<>();
