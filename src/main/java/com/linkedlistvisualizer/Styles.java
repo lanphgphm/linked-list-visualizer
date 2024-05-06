@@ -40,7 +40,7 @@ public class Styles {
     }
 
     public static void styleMainWindow(JFrame frame) {
-        frame.setSize(1080, 600);
+        frame.setSize(1380, 600);
         frame.setResizable(false);
         ImageIcon img = new ImageIcon("src/assets/Tan_Icon.jpg");
         frame.setIconImage(img.getImage());
@@ -159,5 +159,76 @@ public class Styles {
                 button.setBackground(XPBLUE);
             }
         });
+    }
+
+    public static void styleSudokuClearButton(JButton button) {
+        button.setBackground(XPRED);
+        button.setForeground(XPWHITE);
+        button.setBorder(BorderFactory.createLineBorder(XPRED));
+        button.setContentAreaFilled(false);
+        button.setOpaque(true);
+
+        Border shadowBorder = BorderFactory.createLineBorder(XPGREY, 2);
+        Border originalBorder = BorderFactory.createLineBorder(XPRED);
+        Border compoundBorder = BorderFactory.createCompoundBorder(shadowBorder, originalBorder);
+        button.setBorder(compoundBorder);
+
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button.setBackground(XPRED.darker());
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                button.setBackground(XPRED);
+            }
+        });
+    }
+
+    public static void styleSudokuSolveButton(JButton button) {
+        button.setBackground(XPGREEN);
+        button.setForeground(XPWHITE);
+        button.setBorder(BorderFactory.createLineBorder(XPGREEN));
+        button.setContentAreaFilled(false);
+        button.setOpaque(true);
+
+        Border shadowBorder = BorderFactory.createLineBorder(XPGREY, 2);
+        Border originalBorder = BorderFactory.createLineBorder(XPGREEN);
+        Border compoundBorder = BorderFactory.createCompoundBorder(shadowBorder, originalBorder);
+        button.setBorder(compoundBorder);
+
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                button.setBackground(XPGREEN.darker());
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                button.setBackground(XPGREEN);
+            }
+        });
+    }
+
+    public static void styleSudokuPanel(JPanel panel, int w, int h) {
+        panel.setBackground(XPBEIGE);
+        panel.setPreferredSize(new Dimension(w, h));
+        panel.setBorder(new CompoundBorder(
+                new EmptyBorder(0, 5, 0, 0),
+                new BevelBorder(BevelBorder.RAISED, XPWHITE, XPGREY)));
+    }
+
+    public static void styleSudokuNotiPanel(JPanel panel) {
+        panel.setBackground(XPBEIGE);
+        panel.setPreferredSize(new Dimension(50, 50));
+        panel.setBorder(new CompoundBorder(
+                new EmptyBorder(0, 5, 0, 0),
+                new BevelBorder(BevelBorder.RAISED, XPWHITE, XPGREY)));
+    }
+
+    public static void styleNotiLabel(JLabel label) {
+        label.setAlignmentX(Component.LEFT_ALIGNMENT);
+        label.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
     }
 }
