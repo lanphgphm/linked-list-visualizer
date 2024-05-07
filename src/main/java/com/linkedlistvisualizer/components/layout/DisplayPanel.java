@@ -59,7 +59,7 @@ public class DisplayPanel extends JPanel {
         }
     }
 
-    public void updateArray(String arrayStr, boolean animate) {
+    public void updateArray(String arrayStr) {
         this.removeAll();
 
         renderArray(this, arrayStr);
