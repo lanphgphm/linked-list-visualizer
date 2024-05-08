@@ -7,10 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Random;
 import com.linkedlistvisualizer.components.layout.ControlPanel.MusicMan.SoundBot;
-
-
 
 import com.linkedlistvisualizer.DataCenter;
 import com.linkedlistvisualizer.Styles;
@@ -40,7 +39,6 @@ public class InsertButton extends JButton {
 
         Styles.styleButton(this);
         setText("Insert");
-        
 
         SoundBot sound = new SoundBot();
 
@@ -51,21 +49,7 @@ public class InsertButton extends JButton {
                 String valueInputString = valueInput.getText();
                 String indexInputString = indexInput.getText();
 
-                try {
-                    File soundFile = new File(sound.PlayRandomSound()); // your sound file here
-                    AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
-                    Clip clip = AudioSystem.getClip();
-                    clip.open(audioIn);
-                    clip.start();
-                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-                    ex.printStackTrace();
-                }
-
-
-
-
-
-
+                sound.PlaySound();
 
                 // Check if the value input is empty
                 if (valueInputString.equals("")) {

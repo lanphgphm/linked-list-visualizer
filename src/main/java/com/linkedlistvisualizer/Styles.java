@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -11,6 +12,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URL;
 
 import com.linkedlistvisualizer.components.LL.Car;
 
@@ -42,7 +45,9 @@ public class Styles {
     public static void styleMainWindow(JFrame frame) {
         frame.setSize(1380, 600);
         frame.setResizable(false);
-        ImageIcon img = new ImageIcon("src/assets/Tan_Icon.jpg");
+        URL iconURL = Styles.class.getResource("/imgs/Tan_Icon.jpg");
+        ImageIcon img = new ImageIcon(iconURL);
+        // ImageIcon img = new ImageIcon("src/main/resources/Tan_Icon.jpg");
         frame.setIconImage(img.getImage());
     }
 
