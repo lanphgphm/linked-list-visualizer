@@ -1,6 +1,8 @@
 package com.linkedlistvisualizer.components.layout;
 import javax.swing.*;
 
+import com.linkedlistvisualizer.components.MUSIC_MAN.SoundShit;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +10,12 @@ import java.awt.event.ActionListener;
 import com.linkedlistvisualizer.DataCenter;
 import com.linkedlistvisualizer.Styles;
 import com.linkedlistvisualizer.components.LabelledTextInput;
+import javax.swing.*;
+import javax.sound.sampled.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 // import com.linkedlistvisualizer.components.eventHandler.setList;
 @SuppressWarnings("unused")
 public class ControlPanel extends JPanel {
@@ -36,6 +44,9 @@ public class ControlPanel extends JPanel {
         this.arrayInput = new LabelledTextInput("List", "1, 4, 3, 2, 7, 5", textW, textH);
         innerPanel.add(this.arrayInput);
         //button to set arrayinput 
+
+        SoundShit music = new SoundShit();
+
         JButton setArrayButton = new JButton("Set List");
         setArrayButton.addActionListener(new ActionListener(){
             @Override
@@ -43,10 +54,25 @@ public class ControlPanel extends JPanel {
                 String arrayInputString = arrayInput.getText();
                 ControlPanel.this.dataCenter.setArray(arrayInputString);
                 displayPanel.updateArray(arrayInputString);
+
+                try {
+                    File soundFile = new File(music.PlayRandomSound()); // your sound file here
+                    AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(audioIn);
+                    clip.start();
+                    
+                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         Styles.styleButton(setArrayButton);
         innerPanel.add(setArrayButton);
+
+        //button to play a sound 
+        
+
         
         // value input
         this.valueInput = new LabelledTextInput("Value", "1", textW, textH); 
@@ -58,6 +84,18 @@ public class ControlPanel extends JPanel {
             public void actionPerformed(ActionEvent e){
                 String valueInputString = valueInput.getText();
                 ControlPanel.this.dataCenter.setValue(valueInputString);
+
+                try {
+                    File soundFile = new File(music.PlayRandomSound()); // your sound file here
+                    AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(audioIn);
+                    clip.start();
+                    
+                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                    ex.printStackTrace();
+                }
+
             }
         });
         Styles.styleButton(setValueButton);
@@ -73,6 +111,18 @@ public class ControlPanel extends JPanel {
             public void actionPerformed(ActionEvent e){
                 String indexInputString = indexInput.getText();
                 ControlPanel.this.dataCenter.setIndex(indexInputString);
+
+                try {
+                    File soundFile = new File(music.PlayRandomSound()); // your sound file here
+                    AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(audioIn);
+                    clip.start();
+                    
+                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                    ex.printStackTrace();
+                }
+                
             }
         });
         Styles.styleButton(setIndexButton);
@@ -95,3 +145,116 @@ public class ControlPanel extends JPanel {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// package com.linkedlistvisualizer.components.layout;
+// import javax.swing.*;
+
+// import java.awt.*;
+// import java.awt.event.ActionEvent;
+// import java.awt.event.ActionListener;
+
+// import com.linkedlistvisualizer.DataCenter;
+// import com.linkedlistvisualizer.Styles;
+// import com.linkedlistvisualizer.components.LabelledTextInput;
+// // import com.linkedlistvisualizer.components.eventHandler.setList;
+// @SuppressWarnings("unused")
+// public class ControlPanel extends JPanel {
+//     private LabelledTextInput arrayInput; 
+//     private LabelledTextInput valueInput; 
+//     private LabelledTextInput indexInput; 
+//     private DataCenter dataCenter;
+//     private DisplayPanel displayPanel;
+    
+//     public ControlPanel(DataCenter dataCenter, DisplayPanel displayPanel){
+//         this.dataCenter = dataCenter;
+//         this.displayPanel = displayPanel;
+//         int W = 360; // width
+//         int H = 600; // height
+//         int O = 40;  // offset
+
+//         int textW = W-O; 
+//         int textH = 40; 
+        
+//         Styles.styleControlPanel(this, W, H);
+        
+//         JPanel innerPanel = new JPanel();
+//         Styles.styleInnerPanel(innerPanel);
+        
+//         // array input 
+//         this.arrayInput = new LabelledTextInput("List", "1, 4, 3, 2, 7, 5", textW, textH);
+//         innerPanel.add(this.arrayInput);
+//         //button to set arrayinput 
+//         JButton setArrayButton = new JButton("Set List");
+//         setArrayButton.addActionListener(new ActionListener(){
+//             @Override
+//             public void actionPerformed(ActionEvent e){
+//                 String arrayInputString = arrayInput.getText();
+//                 ControlPanel.this.dataCenter.setArray(arrayInputString);
+//                 displayPanel.updateArray(arrayInputString);
+//             }
+//         });
+//         Styles.styleButton(setArrayButton);
+//         innerPanel.add(setArrayButton);
+        
+//         // value input
+//         this.valueInput = new LabelledTextInput("Value", "1", textW, textH); 
+//         innerPanel.add(this.valueInput); 
+//         //button to set valueinput
+//         JButton setValueButton = new JButton("Set Value");
+//         setValueButton.addActionListener(new ActionListener(){
+//             @Override
+//             public void actionPerformed(ActionEvent e){
+//                 String valueInputString = valueInput.getText();
+//                 ControlPanel.this.dataCenter.setValue(valueInputString);
+//             }
+//         });
+//         Styles.styleButton(setValueButton);
+//         innerPanel.add(setValueButton);
+        
+//         // index input 
+//         this.indexInput = new LabelledTextInput("Index (Optional)", "0", textW, textH); 
+//         innerPanel.add(this.indexInput); 
+//         //button to set indexinput
+//         JButton setIndexButton = new JButton("Set Index");
+//         setIndexButton.addActionListener(new ActionListener(){
+//             @Override
+//             public void actionPerformed(ActionEvent e){
+//                 String indexInputString = indexInput.getText();
+//                 ControlPanel.this.dataCenter.setIndex(indexInputString);
+//             }
+//         });
+//         Styles.styleButton(setIndexButton);
+//         innerPanel.add(setIndexButton);
+        
+//         add(innerPanel, BorderLayout.CENTER);
+//     }
+
+//     public String getArrayInput(){
+//         return this.arrayInput.getText(); 
+//     }
+
+//     public String getValueInput(){
+//         return this.valueInput.getText(); 
+//     }
+
+//     public String getIndexInput(){
+//         return this.indexInput.getText(); 
+//     }
+
+
+// }
