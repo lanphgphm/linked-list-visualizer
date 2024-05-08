@@ -5,7 +5,7 @@ library.
 
 ## Developer setup
 
-**Requirements**: Java 21, VSCode (or any IDE of choice)
+**Requirements**: Java 17, VSCode (or any IDE of choice)
 
 1.  Ask @lanphgphm to be added as project collaborator.
 
