@@ -28,16 +28,24 @@ library.
 
 4.  Run the app
 
-    Open the project in your IDE. If you are using VSCode, right click
-    on project folder and choose "Open with VSCode." This ensures that
-    you enter the right environment.
+    - Open the project in your IDE. If you are using VSCode, right click
+      on project folder and choose "Open with VSCode." This ensures that
+      you enter the right environment.
 
-    Inside VSCode, start the app by clicking the "Run" button, or open
-    terminal and type
+      Inside VSCode, start the app by clicking the "Run" button, or open
+      terminal and type
 
-    `mvn exec:java`
+      `mvn exec:java`
 
-    the app should render like a regular desktop app.
+      the app should render like a regular desktop app.
+
+    - If you do not have an IDE or just want to try the application ASAP, head to [target](./target/) and double-click on `linkedListVisualizer-1.0-SNAPSHOT-jar-with-dependencies.jar` and the app should run normally
+    - You can also run this command in the terminal
+
+      ```
+      cd linked-list-visualizer
+      java -jar .\target\linkedListVisualizer-1.0-SNAPSHOT-jar-with-dependencies.jar
+      ```
 
 5.  Push your code to this repository
 
@@ -72,49 +80,50 @@ Current folder structure, and what each folder should contain:
 
 ```
    src
-    |_asset
-    | (Stores app images, icons, etc.)
     |
-    |_main/java/com/linkedlistvisualizer
-        |_MainWindow.java
-        |  (Mother component to call ControlPanel and DisplayPanel)
-        |
-        |_DataCenter.java
-        |  (Shared state to store app's data--similar to React Redux store)
-        |
-        |_Styles.java
-        |  (Store all functions to style the app--similar to .css file)
-        |
-        |_components
-          (All other components of the app goes here)
-            |_layout
-            | (Manage app layout)
-            |   |_ControlPanel
-            |   |   |_ControlPanel.java
-            |   |   |_DeleteButton.java
-            |   |   |_InsertButton.java
-            |   |   |_ResetButton.java
-            |   |   |_SetArrayButton.java
-            |   |
-            |   |_Sudoku
-            |   |   |_ClearSudokuButton.java
-            |   |   |_RandomImage.java
-            |   |   |_SolveSudokuButton.java
-            |   |   |_SudokuNotiPanel.java
-            |   |   |_SudokuPanel.java
-            |   |
-            |   |_DisplayPanel.java
+    |_main
+       |
+       |_java/com/linkedlistvisualizer
+       |    |
+       |    |_MainWindow.java
+       |    |  (Mother component to call ControlPanel and DisplayPanel)
+       |    |
+       |    |_DataCenter.java
+       |    |  (Shared state to store app's data--similar to React Redux store)
+       |    |
+       |    |_Styles.java
+       |    |  (Store all functions to style the app--similar to .css file)
+       |    |
+       |    |_components
+       |      (All other components of the app goes here)
+       |        |_layout
+       |        | (Manage app layout)
+       |        |   |_ControlPanel
+       |        |   |   |_ControlPanel.java
+       |        |   |   |_DeleteButton.java
+       |        |   |   |_InsertButton.java
+       |        |   |   |_ResetButton.java
+       |        |   |   |_SetArrayButton.java
+       |        |   |
+       |        |   |_Sudoku
+       |        |   |   |_ClearSudokuButton.java
+       |        |   |   |_RandomImage.java
+       |        |   |   |_SolveSudokuButton.java
+       |        |   |   |_SudokuNotiPanel.java
+       |        |   |   |_SudokuPanel.java
+       |        |   |
+       |        |   |_DisplayPanel.java
+       |        |
+       |        |_LL
+       |         (Components that makes a linked list)
+       |           |_Car.java
+       |           |_LeftToRightLink.java
+       |           |_RightToLeftLink.java
+       |
+       |
+       |_resources
             |
-            |_LL
-            | (Components that makes a linked list)
-            |   |_Car.java
-            |   |_LeftToRightLink.java
-            |   |_RightToLeftLink.java
-            |
-            |_eventHandlers
-              (Functions to handle user's input, to run algorithms, etc.
-               This folder is meant to store all functions that are not
-               directly related to any object.)
+            |_(Stores app images, icons, etc.)
 ```
 
 ## User installation
@@ -124,4 +133,6 @@ users :)
 
 Desktop installation guide would be updated in due time.
 
-**Last edited**: May 06, 2024 by LP, Sid, Tan.
+##
+
+**Last edited**: May 08, 2024 by LP, Sid, Tan, Huy, Cong Thanh.
