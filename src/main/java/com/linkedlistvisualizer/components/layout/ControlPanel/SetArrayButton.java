@@ -7,20 +7,11 @@ import com.linkedlistvisualizer.Styles;
 import com.linkedlistvisualizer.components.LabelledTextInput;
 import com.linkedlistvisualizer.components.layout.DisplayPanel;
 
-import javax.swing.*;
-import javax.swing.*;
-import javax.sound.sampled.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Random;
 import com.linkedlistvisualizer.components.layout.ControlPanel.MusicMan.SoundBot;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import com.linkedlistvisualizer.components.layout.Sudoku.*;
 
 public class SetArrayButton extends JButton {
     private DataCenter dataCenter;
@@ -36,6 +27,7 @@ public class SetArrayButton extends JButton {
         Styles.styleButton(this);
 
         SoundBot sound = new SoundBot();
+        SudokuPanel sudokuPanel = new SudokuPanel();
 
         addActionListener(new ActionListener() {
 
@@ -47,6 +39,7 @@ public class SetArrayButton extends JButton {
                 displayPanel.updateArray(arrayInputString);
 
                 sound.PlaySound();
+                sudokuPanel.changeImage();
             }
 
         });

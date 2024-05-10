@@ -1,14 +1,8 @@
 package com.linkedlistvisualizer.components.layout.ControlPanel;
 
 import javax.swing.*;
-import javax.swing.*;
-import javax.sound.sampled.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Random;
 import com.linkedlistvisualizer.components.layout.ControlPanel.MusicMan.SoundBot;
 
 import com.linkedlistvisualizer.DataCenter;
@@ -16,9 +10,7 @@ import com.linkedlistvisualizer.Styles;
 import com.linkedlistvisualizer.components.LabelledTextInput;
 import com.linkedlistvisualizer.components.layout.DisplayPanel;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import com.linkedlistvisualizer.components.layout.Sudoku.*;
 import java.util.ArrayList;
 
 public class InsertButton extends JButton {
@@ -41,6 +33,7 @@ public class InsertButton extends JButton {
         setText("Insert");
 
         SoundBot sound = new SoundBot();
+        SudokuPanel sudokuPanel = new SudokuPanel();
 
         addActionListener(new ActionListener() {
 
@@ -50,6 +43,7 @@ public class InsertButton extends JButton {
                 String indexInputString = indexInput.getText();
 
                 sound.PlaySound();
+                sudokuPanel.changeImage();
 
                 // Check if the value input is empty
                 if (valueInputString.equals("")) {
