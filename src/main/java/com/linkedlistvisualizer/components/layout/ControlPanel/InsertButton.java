@@ -16,6 +16,8 @@ import com.linkedlistvisualizer.Styles;
 import com.linkedlistvisualizer.components.LabelledTextInput;
 import com.linkedlistvisualizer.components.layout.DisplayPanel;
 
+import com.linkedlistvisualizer.components.layout.Sudoku.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,6 +43,7 @@ public class InsertButton extends JButton {
         setText("Insert");
 
         SoundBot sound = new SoundBot();
+        SudokuPanel sudokuPanel = new SudokuPanel();
 
         addActionListener(new ActionListener() {
 
@@ -50,6 +53,7 @@ public class InsertButton extends JButton {
                 String indexInputString = indexInput.getText();
 
                 sound.PlaySound();
+                sudokuPanel.changeImage();
 
                 // Check if the value input is empty
                 if (valueInputString.equals("")) {

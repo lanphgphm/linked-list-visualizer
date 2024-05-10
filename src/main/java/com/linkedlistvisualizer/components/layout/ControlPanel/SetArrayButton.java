@@ -18,6 +18,8 @@ import java.net.URL;
 import java.util.Random;
 import com.linkedlistvisualizer.components.layout.ControlPanel.MusicMan.SoundBot;
 
+import com.linkedlistvisualizer.components.layout.Sudoku.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +38,7 @@ public class SetArrayButton extends JButton {
         Styles.styleButton(this);
 
         SoundBot sound = new SoundBot();
+        SudokuPanel sudokuPanel = new SudokuPanel();
 
         addActionListener(new ActionListener() {
 
@@ -46,6 +49,7 @@ public class SetArrayButton extends JButton {
                 displayPanel.updateArray(arrayInputString);
 
                 sound.PlaySound();
+                sudokuPanel.changeImage();
             }
 
         });

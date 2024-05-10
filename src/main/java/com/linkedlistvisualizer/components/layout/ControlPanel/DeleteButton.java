@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import com.linkedlistvisualizer.components.layout.Sudoku.*;
+
 
 public class DeleteButton extends JButton {
     private DataCenter dataCenter;
@@ -28,6 +30,8 @@ public class DeleteButton extends JButton {
         this.valueInput = valueInput;
         this.indexInput = indexInput;
         this.arrayInput = arrayInput;
+        
+        SudokuPanel sudokuPanel = new SudokuPanel();
 
         setText("Delete");
         Styles.styleButton(this);
@@ -37,6 +41,8 @@ public class DeleteButton extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Delete button clicked");
+
+                sudokuPanel.changeImage();
 
                 // If both value and index are not empty, show a warning message
                 if ((!valueInput.getText().equals("") && !indexInput.getText().equals(""))) {

@@ -7,6 +7,7 @@ import com.linkedlistvisualizer.Styles;
 import com.linkedlistvisualizer.components.LabelledTextInput;
 import com.linkedlistvisualizer.components.layout.DisplayPanel;
 
+import com.linkedlistvisualizer.components.layout.Sudoku.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,8 @@ public class ResetButton extends JButton {
         this.dataCenter = dataCenter;
         this.displayPanel = displayPanel;
 
+        SudokuPanel sudokuPanel = new SudokuPanel();
+
         setText("Reset");
         Styles.styleButton(this);
 
@@ -31,6 +34,8 @@ public class ResetButton extends JButton {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                sudokuPanel.changeImage();
+
                 dataCenter.setArray("");
                 dataCenter.setIntArray("");
                 dataCenter.setValue("");
