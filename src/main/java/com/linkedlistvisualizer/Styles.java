@@ -4,7 +4,6 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -12,7 +11,6 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.net.URL;
 
 import com.linkedlistvisualizer.components.LL.Car;

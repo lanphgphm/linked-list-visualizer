@@ -8,7 +8,6 @@ import com.linkedlistvisualizer.components.LabelledTextInput;
 import com.linkedlistvisualizer.components.layout.DisplayPanel;
 
 import com.linkedlistvisualizer.components.layout.Sudoku.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

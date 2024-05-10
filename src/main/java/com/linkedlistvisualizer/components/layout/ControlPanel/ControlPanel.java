@@ -81,7 +81,6 @@ public class ControlPanel extends JPanel {
         innerC.fill = GridBagConstraints.NONE;
         innerPanel.add(resetButton, innerC);
 
-        // <<<<<<< HEAD
 
         JPanel buttonPanel = new JPanel();
         GridBagConstraints constraints = Styles.styleButtonPanel(buttonPanel);
@@ -115,12 +114,9 @@ public class ControlPanel extends JPanel {
         innerC.gridx = 1;
         innerC.fill = GridBagConstraints.NONE;
         innerPanel.add(solveSudokuButton, innerC);
-        // >>>>>>> master
 
         add(innerPanel);
-
         add(buttonPanel);
-        // =======
     }
 
     public String getArrayInput() {

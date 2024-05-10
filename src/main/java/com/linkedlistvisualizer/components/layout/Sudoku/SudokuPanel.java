@@ -1,16 +1,10 @@
 package com.linkedlistvisualizer.components.layout.Sudoku;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.CompoundBorder;
-import javax.swing.text.Style;
 
 import com.linkedlistvisualizer.Styles;
-import com.linkedlistvisualizer.components.layout.Sudoku.SudokuNotiPanel;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.Arrays;
 
 public class SudokuPanel extends JPanel {
     private int gridSize = 9;

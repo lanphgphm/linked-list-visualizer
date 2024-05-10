@@ -7,7 +7,6 @@ import com.linkedlistvisualizer.Styles;
 import com.linkedlistvisualizer.components.LabelledTextInput;
 import com.linkedlistvisualizer.components.layout.DisplayPanel;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
