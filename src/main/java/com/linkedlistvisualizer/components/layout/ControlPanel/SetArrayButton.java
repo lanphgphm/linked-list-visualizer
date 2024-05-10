@@ -43,6 +43,7 @@ public class SetArrayButton extends JButton {
             public void actionPerformed(ActionEvent e) {
                 String arrayInputString = arrayInput.getText();
                 dataCenter.setArray(arrayInputString);
+                dataCenter.setIntArray(arrayInputString);
                 displayPanel.updateArray(arrayInputString);
 
                 sound.PlaySound();
