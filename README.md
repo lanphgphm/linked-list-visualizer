@@ -9,11 +9,11 @@ Users can run this project by running the `.jar` file.
 ![Alt text] (project-documents/dload.png) 
 3. Double click on the `linkedListVisualizer-1.0-SNAPSHOT-jar-with-dependencies.jar` file to run the app. This file runs the same on all operating system, thanks to the "Write Once, Run Everywhere" philosophy of Java. 
 On GNU-Linux: 
-![Alt text] (project-documents/linux.png) 
+![Alt text](project-documents/linux.png) 
 On Microsoft Windows: 
-![Alt text] (Project-documents/windows.png) 
+![Alt text](Project-documents/windows.png) 
 On MacOS: 
-![Alt text] (project-documents/macOS.png)
+![Alt text](project-documents/macOS.png)
 4. The app has 2 main functions: 
 - Visualize linked list add and delete operations.
     - Type in your list, each element must be a number, separated by a comma.
@@ -26,8 +26,8 @@ On MacOS:
     - Input some numbers on the sudoku board. 
     - Click "Solve sudoku" to see the solution.
     - Click "Clear sudoku" to clear the board.
-    ![Alt text] (project-documents/manualSu1.png)
-    ![Alt text] (project-documents/manualSu2.png)
+    ![Alt text](project-documents/manualSu1.png)
+    ![Alt text](project-documents/manualSu2.png)
 - Random music and photos will be displayed to add some fun to the user experience. 
 
 ## Developer setup
