@@ -11,7 +11,7 @@ Users can run this project by running the `.jar` file.
 On GNU-Linux: 
 ![Alt text](project-documents/linux.png) 
 On Microsoft Windows: 
-![Alt text](Project-documents/windows.png) 
+![Alt text](project-documents/windows.png) 
 On MacOS: 
 ![Alt text](project-documents/macOS.png)
 4. The app has 2 main functions: 
