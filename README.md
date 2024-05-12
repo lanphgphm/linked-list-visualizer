@@ -1,11 +1,38 @@
-# Linked List Visualizer
+# Linked List Visualizer & Sudoku Solver
 
-Visualizing linked list `add` and `delete` operation using Java Swing UI
-library.
+Visualizing linked list `add` and `delete` operation, solving Sudoku boards using Java Swing UI library.
+
+## User installation
+Users can run this project by running the `.jar` file.
+1. Go to https://github.com/lanphgphm/linked-list-visualizer/blob/master/target/linkedListVisualizer-1.0-SNAPSHOT-jar-with-dependencies.jar
+2. Select "Download raw file" 
+![Alt text] (project-documents/dload.png) 
+3. Double click on the `linkedListVisualizer-1.0-SNAPSHOT-jar-with-dependencies.jar` file to run the app. This file runs the same on all operating system, thanks to the "Write Once, Run Everywhere" philosophy of Java. 
+On GNU-Linux: 
+![Alt text] (project-documents/linux.png) 
+On Microsoft Windows: 
+![Alt text] (Project-documents/windows.png) 
+On MacOS: 
+![Alt text] (project-documents/macOS.png)
+4. The app has 2 main functions: 
+- Visualize linked list add and delete operations.
+    - Type in your list, each element must be a number, separated by a comma.
+    - Click "Set List" to display the list with those elements.
+    - Input element and index to add or delete. 
+    - Click "Insert" or "Delete" to see the list after the operation.
+    - Click "Reset" to clear the list.
+    ![Alt text] (project-documents/manualLL.png)
+- Solve 9x9 sudoku. 
+    - Input some numbers on the sudoku board. 
+    - Click "Solve sudoku" to see the solution.
+    - Click "Clear sudoku" to clear the board.
+    ![Alt text] (project-documents/manualSu1.png)
+    ![Alt text] (project-documents/manualSu2.png)
+- Random music and photos will be displayed to add some fun to the user experience. 
 
 ## Developer setup
 
-**Requirements**: Java 17, VSCode (or any IDE of choice)
+**Requirements**: Java 17 (the Java Development Kit), VSCode (or any IDE of choice)
 
 1.  Ask @lanphgphm to be added as project collaborator.
 
@@ -76,7 +103,7 @@ i.e. a LinkedList component needs to have the node (Car), and the Link,
 so Link and Car are in the same folder "LL".
 ![Alt text](project-documents/class_struct.png)
 
-Current folder structure, and what each folder should contain:
+Current source code folder structure, and what each folder should contain:
 
 ```
    src
@@ -126,13 +153,4 @@ Current folder structure, and what each folder should contain:
             |_(Stores app images, icons, etc.)
 ```
 
-## User installation
-
-Currently, this product is not done therefore it is not shippable to
-users :)
-
-Desktop installation guide would be updated in due time.
-
-##
-
-**Last edited**: May 08, 2024 by LP, Sid, Tan, Huy, Cong Thanh.
+**Last edited**: May 12, 2024. This project will no longer be developed or maintained. 
