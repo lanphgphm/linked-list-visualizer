@@ -6,7 +6,7 @@ Visualizing linked list `add` and `delete` operation, solving Sudoku boards usin
 Users can run this project by running the `.jar` file.
 1. Go to https://github.com/lanphgphm/linked-list-visualizer/blob/master/target/linkedListVisualizer-1.0-SNAPSHOT-jar-with-dependencies.jar
 2. Select "Download raw file" 
-![Alt text] (project-documents/dload.png) 
+![Alt text](project-documents/dload.png) 
 3. Double click on the `linkedListVisualizer-1.0-SNAPSHOT-jar-with-dependencies.jar` file to run the app. This file runs the same on all operating system, thanks to the "Write Once, Run Everywhere" philosophy of Java. 
 On GNU-Linux: 
 ![Alt text](project-documents/linux.png) 
@@ -21,7 +21,7 @@ On MacOS:
     - Input element and index to add or delete. 
     - Click "Insert" or "Delete" to see the list after the operation.
     - Click "Reset" to clear the list.
-    ![Alt text] (project-documents/manualLL.png)
+    ![Alt text](project-documents/manualLL.png)
 - Solve 9x9 sudoku. 
     - Input some numbers on the sudoku board. 
     - Click "Solve sudoku" to see the solution.
@@ -153,4 +153,4 @@ Current source code folder structure, and what each folder should contain:
             |_(Stores app images, icons, etc.)
 ```
 
-**Last edited**: May 12, 2024. This project will no longer be developed or maintained. 
+**Last edited**: May 13, 2024. This project will no longer be developed or maintained. 
