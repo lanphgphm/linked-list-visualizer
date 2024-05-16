@@ -7,6 +7,13 @@ The Java Swing components that we used the most are:
 - JButton: which allows for user interation with the app (set list, clear sudoku, etc.) and waits for events to trigger some actions.
 - Layout components (GridLayout, FlowLayout): which is used to control how each component is placed in one panel.
 
+## Group members: 
+- Pham Lan Phuong (@lanphgphm) 
+- Nguyen Dang Minh Quan (@siddankthep) 
+- Nguyen Hoang Nhat Tan (@nhattan417) 
+- Ha Huy (@huyha222) 
+- Nguyen Cong Thanh (@nguyentanphivu) 
+
 ## User installation
 Users can run this project by running the `.jar` file.
 1. Go to https://github.com/lanphgphm/linked-list-visualizer/blob/master/target/linkedListVisualizer-1.0-SNAPSHOT-jar-with-dependencies.jar
