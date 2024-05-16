@@ -2,6 +2,11 @@
 
 Visualizing linked list `add` and `delete` operation, solving Sudoku boards using Java Swing UI library.
 
+The Java Swing components that we used the most are: 
+- JPanel: JPanel is a versatile semantic ccomponent that is used to mark an area of the viewport. We use JPanel to create the layouts, the Sudoku board, the notification panel, even each component of the linked list is also a JPanel.
+- JButton: which allows for user interation with the app (set list, clear sudoku, etc.) and waits for events to trigger some actions.
+- Layout components (GridLayout, FlowLayout): which is used to control how each component is placed in one panel.
+
 ## User installation
 Users can run this project by running the `.jar` file.
 1. Go to https://github.com/lanphgphm/linked-list-visualizer/blob/master/target/linkedListVisualizer-1.0-SNAPSHOT-jar-with-dependencies.jar
@@ -153,4 +158,4 @@ Current source code folder structure, and what each folder should contain:
             |_(Stores app images, icons, etc.)
 ```
 
-**Last edited**: May 13, 2024. This project will no longer be developed or maintained. 
+**Last edited**: May 16, 2024. This project will no longer be developed or maintained. 
